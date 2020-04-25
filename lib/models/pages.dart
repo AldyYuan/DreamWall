@@ -1,10 +1,10 @@
 import 'package:dream_wall/models/photos.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'page.g.dart';
+part 'pages.g.dart';
 
 @JsonSerializable()
-class Page {
+class Pages {
   @JsonKey(name: "page")
   int page;
 
@@ -17,9 +17,9 @@ class Page {
   @JsonKey(name: "next_page")
   String nextPage;
 
-  Page();
+  Pages();
 
-  factory Page.fromJson(Map<String, dynamic> json) => _$PageFromJson(json);
+  factory Pages.fromJson(Map<String, dynamic> json) => _$PagesFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PageToJson(this);
+  Map<String, dynamic> toJson() => _$PagesToJson(this);
 }

@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'page.dart';
+part of 'pages.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Page _$PageFromJson(Map<String, dynamic> json) {
-  return Page()
+Pages _$PagesFromJson(Map<String, dynamic> json) {
+  return Pages()
     ..page = json['page'] as int
     ..perPage = json['per_page'] as int
     ..photos = (json['photos'] as List)
@@ -17,7 +17,7 @@ Page _$PageFromJson(Map<String, dynamic> json) {
     ..nextPage = json['next_page'] as String;
 }
 
-Map<String, dynamic> _$PageToJson(Page instance) => <String, dynamic>{
+Map<String, dynamic> _$PagesToJson(Pages instance) => <String, dynamic>{
       'page': instance.page,
       'per_page': instance.perPage,
       'photos': instance.photos,
