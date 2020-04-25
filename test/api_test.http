@@ -1,0 +1,5 @@
+@url = https://api.pexels.com/v1/
+@token = 563492ad6f91700001000001f885c3f8f3994adc9edebb62a80247c9
+
+GET {{url}}curated?per_page=1&page=1 HTTP/1.1
+Authorization: {{token}}
