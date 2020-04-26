@@ -8,8 +8,8 @@ part of 'pages.dart';
 
 Pages _$PagesFromJson(Map<String, dynamic> json) {
   return Pages()
-    ..page = json['page'] as int
-    ..perPage = json['per_page'] as int
+    ..page = (json['page'] as num)?.toDouble()
+    ..perPage = (json['per_page'] as num)?.toDouble()
     ..photos = (json['photos'] as List)
         ?.map((e) =>
             e == null ? null : Photos.fromJson(e as Map<String, dynamic>))

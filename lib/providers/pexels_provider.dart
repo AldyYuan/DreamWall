@@ -3,24 +3,12 @@ import 'package:dream_wall/models/pages.dart';
 import 'package:flutter/material.dart';
 
 class PexelsProvider with ChangeNotifier {
-  List<Pages> _pages;
-
-  List<Pages> get pages {
-    if (_pages == null) {
-      refresh();
+  Future<Pages> getPhotos() async {
+    final response = await api.get("curated?per_page=15&page=1");
+    if (response.statusCode == 200) {
+      return Pages.fromJson(response.data);
     }
-    return _pages ?? [];
-  }
-
-  Future<void> refresh() async {
-    final response = await api.get("curated?per_page=50&page=1");
-    if (response?.statusCode == 200) {
-      _pages = (response.data["data"] as List)
-          .map((e) => Pages.fromJson(e))
-          .toList();
-      notifyListeners();
-      return;
-    }
+    return null;
   }
 
   Future<List<Pages>> searchPages(String query) async {

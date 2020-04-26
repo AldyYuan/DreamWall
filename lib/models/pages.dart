@@ -6,10 +6,10 @@ part 'pages.g.dart';
 @JsonSerializable()
 class Pages {
   @JsonKey(name: "page")
-  int page;
+  double page;
 
   @JsonKey(name: "per_page")
-  int perPage;
+  double perPage;
 
   @JsonKey(name: "photos")
   List<Photos> photos;

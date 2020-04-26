@@ -16,6 +16,7 @@ final api = Dio(
       sendTimeout: 30 * 1000,
       receiveTimeout: 30 * 1000,
       receiveDataWhenStatusError: true,
+      contentType: "application/json",
       followRedirects: true),
 )
   ..transformer = DefaultTransformer(jsonDecodeCallback: (s) {
@@ -23,11 +24,8 @@ final api = Dio(
   })
   ..interceptors.add(InterceptorsWrapper(
     onRequest: (options) {
-      if (accessToken == null) {
-        options.headers.addAll({
-          "Authorization": accessToken,
-        });
-      }
+        options.headers["Authorization"] = accessToken;
+        return options;
     },
     onResponse: (e) async {
       if (e.statusCode == 200) {

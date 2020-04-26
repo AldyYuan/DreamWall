@@ -8,13 +8,13 @@ part of 'photos.dart';
 
 Photos _$PhotosFromJson(Map<String, dynamic> json) {
   return Photos()
-    ..id = json['id'] as int
-    ..width = json['width'] as int
-    ..height = json['height'] as int
+    ..id = (json['id'] as num)?.toDouble()
+    ..width = (json['width'] as num)?.toDouble()
+    ..height = (json['height'] as num)?.toDouble()
     ..url = json['url'] as String
     ..photographer = json['photographer'] as String
     ..photographerUrl = json['photographer_url'] as String
-    ..photographerId = json['photographer_id'] as String
+    ..photographerId = (json['photographer_id'] as num)?.toDouble()
     ..src = json['src'] == null
         ? null
         : Source.fromJson(json['src'] as Map<String, dynamic>)

@@ -6,13 +6,13 @@ part 'photos.g.dart';
 @JsonSerializable()
 class Photos {
   @JsonKey(name: "id")
-  int id;
+  double id;
 
   @JsonKey(name: "width")
-  int width;
+  double width;
 
   @JsonKey(name: "height")
-  int height;
+  double height;
 
   @JsonKey(name: "url")
   String url;
@@ -24,7 +24,7 @@ class Photos {
   String photographerUrl;
 
   @JsonKey(name: "photographer_id")
-  String photographerId;
+  double photographerId;
 
   @JsonKey(name: "src")
   Source src;
