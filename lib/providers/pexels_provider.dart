@@ -37,14 +37,4 @@ class PexelsProvider with ChangeNotifier {
     }
     return null;
   }
-
-  Future<Pages> getRandom(int random) async {
-    final response =
-        await api.get("curated?per_page=1&page=$random");
-
-    if (response.statusCode == 200) {
-      return Pages.fromJson(response.data);
-    }
-    return null;
-  }
 }

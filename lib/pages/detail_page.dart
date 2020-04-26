@@ -198,7 +198,6 @@ class _DetailPageState extends State<DetailPage> {
                       }
 
                       var fileName = await ImageDownloader.findName(imageId);
-                      var path = await ImageDownloader.findPath(imageId);
                       scaffoldKey.currentState.showSnackBar(
                         SnackBar(
                           content:

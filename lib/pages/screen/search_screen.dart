@@ -17,6 +17,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _controller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
+  final _scrollController = ScrollController();
   List<Photos> wallpaper = [];
   var random = Random();
   bool isSearch = false;
@@ -43,6 +44,18 @@ class _SearchScreenState extends State<SearchScreen> {
     }
 
     return null;
+  }
+
+  @override
+  void initState() {
+    this.loadMore();
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        loadMore();
+      }
+    });
   }
 
   @override
@@ -190,6 +203,7 @@ class _SearchScreenState extends State<SearchScreen> {
             physics: const AlwaysScrollableScrollPhysics(),
             crossAxisCount: 4,
             shrinkWrap: true,
+            controller: _scrollController,
             itemCount: wallpaper.length,
             itemBuilder: (context, index) {
               final item = wallpaper[index];
