@@ -47,7 +47,7 @@ dev_dependencies:
   flutter_native_splash: ^0.1.9
 
 flutter_native_splash:
-  image: assets/Dream Wall-logos_transparent.png
+  image: assets/Dream Wall-logos_black.png
   color: "E79115"
 
 flutter_icons:
