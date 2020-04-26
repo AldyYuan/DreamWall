@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class PexelsProvider with ChangeNotifier {
   Future<Pages> getPhotos() async {
-    final response = await api.get("curated?per_page=15&page=1");
+    final response = await api.get("curated?per_page=50&page=1");
     if (response.statusCode == 200) {
       return Pages.fromJson(response.data);
     }
@@ -13,7 +13,7 @@ class PexelsProvider with ChangeNotifier {
 
   Future<Pages> getOther(int other) async {
     final response =
-        await api.get("curated?per_page=15&page=$other");
+        await api.get("curated?per_page=30&page=$other");
     if (response.statusCode == 200) {
       return Pages.fromJson(response.data);
     }
@@ -21,16 +21,7 @@ class PexelsProvider with ChangeNotifier {
   }
 
   Future<Pages> searchPages(String query) async {
-    final response = await api.get("search?query=$query&per_page=15&page=1");
-
-    if (response.statusCode == 200) {
-      return Pages.fromJson(response.data);
-    }
-    return null;
-  }
-
-  Future<Pages> getPhotoById(double id) async {
-    final response = await api.get("photos/$id");
+    final response = await api.get("search?query=$query&per_page=50&page=1");
 
     if (response.statusCode == 200) {
       return Pages.fromJson(response.data);
