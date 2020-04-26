@@ -11,36 +11,33 @@ class PexelsProvider with ChangeNotifier {
     return null;
   }
 
-  Future<List<Pages>> searchPages(String query) async {
+  Future<Pages> searchPages(String query) async {
     final response = await api.get("search?query=$query&per_page=80&page=1");
-    if (response.statusCode == 200 && response.data["success"]) {
-      return (response.data["data"] as List)
-          .map((e) => Pages.fromJson(e))
-          .toList();
+    if (response.statusCode == 200) {
+      if (response.statusCode == 200) {
+        return Pages.fromJson(response.data);
+      }
+      return null;
     }
-
-    return [];
   }
 
-  Future<List<Pages>> getPhotoById(String id) async {
+  Future<Pages> getPhotoById(String id) async {
     final response = await api.get("photos/$id");
-    if (response.statusCode == 200 && response.data["success"]) {
-      return (response.data["data"] as List)
-          .map((e) => Pages.fromJson(e))
-          .toList();
+    if (response.statusCode == 200) {
+      if (response.statusCode == 200) {
+        return Pages.fromJson(response.data);
+      }
+      return null;
     }
-
-    return [];
   }
 
-  Future<List<Pages>> getRandom({String page}) async {
+  Future<Pages> getRandom({String page}) async {
     final response = await api.get("curated?per_page=1&page=$page");
-    if (response.statusCode == 200 && response.data["success"]) {
-      return (response.data["data"] as List)
-          .map((e) => Pages.fromJson(e))
-          .toList();
+    if (response.statusCode == 200) {
+      if (response.statusCode == 200) {
+        return Pages.fromJson(response.data);
+      }
+      return null;
     }
-
-    return [];
   }
 }
