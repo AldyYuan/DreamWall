@@ -21,7 +21,7 @@ class PexelsProvider with ChangeNotifier {
   }
 
   Future<Pages> searchPages(String query) async {
-    final response = await api.get("search?query=$query&per_page=80&page=1");
+    final response = await api.get("search?query=$query&per_page=15&page=1");
 
     if (response.statusCode == 200) {
       return Pages.fromJson(response.data);
