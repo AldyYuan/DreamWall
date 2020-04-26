@@ -1,7 +1,6 @@
 import 'package:dream_wall/api/api.dart';
 import 'package:dream_wall/models/pages.dart';
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 class PexelsProvider with ChangeNotifier {
   Future<Pages> getPhotos() async {
@@ -12,10 +11,9 @@ class PexelsProvider with ChangeNotifier {
     return null;
   }
 
-  Future<Pages> getOther() async {
-    var random = new Random();
+  Future<Pages> getOther(int other) async {
     final response =
-        await api.get("curated?per_page=15&page=${random.nextInt(1000)}");
+        await api.get("curated?per_page=15&page=$other");
     if (response.statusCode == 200) {
       return Pages.fromJson(response.data);
     }
@@ -40,10 +38,9 @@ class PexelsProvider with ChangeNotifier {
     return null;
   }
 
-  Future<Pages> getRandom() async {
-    var random = new Random();
+  Future<Pages> getRandom(int random) async {
     final response =
-        await api.get("curated?per_page=1&page=${random.nextInt(1000)}");
+        await api.get("curated?per_page=1&page=$random");
 
     if (response.statusCode == 200) {
       return Pages.fromJson(response.data);

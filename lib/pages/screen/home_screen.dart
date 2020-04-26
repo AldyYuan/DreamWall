@@ -1,6 +1,7 @@
 import 'package:dream_wall/api/api.dart';
 import 'package:dream_wall/models/pages.dart';
 import 'package:dream_wall/models/photos.dart';
+import 'package:dream_wall/pages/detail_page.dart';
 import 'package:dream_wall/providers/pexels_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -18,7 +19,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final _scrollController = ScrollController();
 
   Future<Pages> loadMore() async {
-
     if (isLoading == false) {
       setState(() {
         isLoading = true;
@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               }
 
-              if(wallpaper.length <= 15){
+              if (wallpaper.length <= 15) {
                 wallpaper.addAll(snapshot.data.photos);
               }
 
@@ -99,17 +99,36 @@ class _HomeScreenState extends State<HomeScreen> {
                     if (index == wallpaper.length) {
                       return buildProgressIndicator();
                     } else {
-                      return Card(
-                        semanticContainer: true,
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        child: FadeInImage.assetNetwork(
-                          image: item.src.medium,
-                          placeholder: "assets/loading.gif",
+                      return GestureDetector(
+                        onTap: () => Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (
+                              _,
+                              __,
+                              ___,
+                            ) =>
+                                DetailPage(photo: item),
+                            transitionsBuilder: (context, animation,
+                                    secondaryAnimation, child) =>
+                                FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            ),
+                          ),
                         ),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
-                        elevation: 5,
-                        margin: EdgeInsets.all(10),
+                        child: Card(
+                          semanticContainer: true,
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          child: FadeInImage.assetNetwork(
+                            image: item.src.medium,
+                            placeholder: "assets/loading.gif",
+                          ),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)),
+                          elevation: 5,
+                          margin: EdgeInsets.all(10),
+                        ),
                       );
                     }
                   },

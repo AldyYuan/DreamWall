@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
 
   final List<BubbleBottomBarItem> items = [
     BubbleBottomBarItem(
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: Colors.white70,
         icon: Icon(
           Icons.home,
           color: Colors.blueGrey,
@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
             style:
                 TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
     BubbleBottomBarItem(
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: Colors.white70,
         icon: Icon(
           Icons.search,
           color: Colors.blueGrey,
@@ -46,18 +46,20 @@ class _HomePageState extends State<HomePage> {
             style:
                 TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
     BubbleBottomBarItem(
-        backgroundColor: Colors.deepOrange,
-        icon: Icon(
-          Icons.dashboard,
-          color: Colors.blueGrey,
-        ),
-        activeIcon: Icon(
-          Icons.dashboard,
-          color: Colors.black,
-        ),
-        title: Text("Random",
-            style:
-                TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
+      backgroundColor: Colors.white70,
+      icon: Icon(
+        Icons.dashboard,
+        color: Colors.blueGrey,
+      ),
+      activeIcon: Icon(
+        Icons.dashboard,
+        color: Colors.black,
+      ),
+      title: Text(
+        "Random",
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+      ),
+    ),
   ];
 
   @override
@@ -71,8 +73,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber[600],
-        title:
-            Image.asset("assets/Dream Wall-logos_black.png", width: 225),
+        title: Image.asset("assets/Dream Wall-logos_black.png", width: 225),
       ),
       body: buildScreens[currentIndex],
       bottomNavigationBar: BubbleBottomBar(
