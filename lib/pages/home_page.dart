@@ -1,8 +1,11 @@
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
+import 'package:dream_wall/pages/about_page.dart';
 import 'package:dream_wall/pages/screen/home_screen.dart';
 import 'package:dream_wall/pages/screen/random_screen.dart';
 import 'package:dream_wall/pages/screen/search_screen.dart';
 import 'package:flutter/material.dart';
+
+enum PageEnum { aboutPage }
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,9 +21,33 @@ class _HomePageState extends State<HomePage> {
     RandomScreen()
   ];
 
+  _onSelect(PageEnum value) {
+    switch (value) {
+      case PageEnum.aboutPage:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => AboutPage()));
+        break;
+      default:
+    }
+  }
+
+  Widget _popUpMenu() => PopupMenuButton<PageEnum>(
+        onSelected: _onSelect,
+        icon: Icon(Icons.more_vert, color: Colors.black),
+        offset: Offset(0, 100),
+        itemBuilder: (context) => [
+          PopupMenuItem(child: Row(
+            children: [
+              Icon(Icons.info_outline),
+              Text("About"),
+            ],
+          ), value: PageEnum.aboutPage),
+        ],
+      );
+
   final List<BubbleBottomBarItem> items = [
     BubbleBottomBarItem(
-        backgroundColor: Colors.white70,
+        backgroundColor: Colors.amber[900],
         icon: Icon(
           Icons.home,
           color: Colors.blueGrey,
@@ -33,7 +60,7 @@ class _HomePageState extends State<HomePage> {
             style:
                 TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
     BubbleBottomBarItem(
-        backgroundColor: Colors.white70,
+        backgroundColor: Colors.amber[900],
         icon: Icon(
           Icons.search,
           color: Colors.blueGrey,
@@ -46,7 +73,7 @@ class _HomePageState extends State<HomePage> {
             style:
                 TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
     BubbleBottomBarItem(
-      backgroundColor: Colors.white70,
+      backgroundColor: Colors.amber[900],
       icon: Icon(
         Icons.dashboard,
         color: Colors.blueGrey,
@@ -74,6 +101,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.amber[600],
         title: Image.asset("assets/Dream Wall-logos_black.png", width: 225),
+        actions: <Widget>[_popUpMenu()],
       ),
       body: buildScreens[currentIndex],
       bottomNavigationBar: BubbleBottomBar(
