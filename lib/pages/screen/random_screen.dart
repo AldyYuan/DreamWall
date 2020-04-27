@@ -126,8 +126,9 @@ class _RandomScreenState extends State<RandomScreen> {
                           semanticContainer: true,
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           child: FadeInImage.assetNetwork(
-                            image: item.src.original,
+                            image: item.src.medium,
                             placeholder: "assets/loading.gif",
+                            fit: BoxFit.fill,
                           ),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)),
