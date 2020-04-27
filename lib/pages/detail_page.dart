@@ -66,79 +66,11 @@ class _DetailPageState extends State<DetailPage> {
               children: [
                 _getPhotos(context, widget.photo),
                 _buildDescription(widget.photo),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text("Other Images",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
-                    ),
-                  ],
-                ),
-                FutureBuilder<Pages>(
-                  future: Provider.of<PexelsProvider>(context, listen: false)
-                      .getOther(random.nextInt(1000)),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    // Ads
-                    AdmobBanner(
-                        adUnitId: ams.getBannerDetail(),
-                        adSize: AdmobBannerSize.FULL_BANNER);
-                    wallpaper.addAll(snapshot.data.photos);
-                    return Expanded(
-                      child: StaggeredGridView.countBuilder(
-                        physics: ClampingScrollPhysics(),
-                        primary: false,
-                        shrinkWrap: true,
-                        crossAxisCount: 4,
-                        itemCount: wallpaper.length,
-                        itemBuilder: (context, index) {
-                          final item = wallpaper[index];
-                          return GestureDetector(
-                            onTap: () => Navigator.pushReplacement(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder: (
-                                  _,
-                                  __,
-                                  ___,
-                                ) =>
-                                    DetailPage(photo: item),
-                                transitionsBuilder: (context, animation,
-                                        secondaryAnimation, child) =>
-                                    FadeTransition(
-                                  opacity: animation,
-                                  child: child,
-                                ),
-                              ),
-                            ),
-                            child: Card(
-                              semanticContainer: true,
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              child: FadeInImage.assetNetwork(
-                                image: item.src.medium,
-                                placeholder: "assets/loading.gif",
-                              ),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              elevation: 5,
-                              margin: EdgeInsets.all(10),
-                            ),
-                          );
-                        },
-                        staggeredTileBuilder: (index) => StaggeredTile.fit(2),
-                        mainAxisSpacing: 4.0,
-                        crossAxisSpacing: 4.0,
-                      ),
-                    );
-                  },
-                )
+                Divider(thickness: 1),
+                // Ads
+                AdmobBanner(
+                    adUnitId: ams.getBannerDetail(),
+                    adSize: AdmobBannerSize.FULL_BANNER)
               ],
             ),
             Padding(

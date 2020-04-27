@@ -151,6 +151,11 @@ class _SearchScreenState extends State<SearchScreen> {
         children: [
           buildSearchBox(),
           isSearch ? buildSearch() : Container(),
+          Divider(thickness: 1),
+          // Ads
+          AdmobBanner(
+              adUnitId: ams.getBannerSearch(),
+              adSize: AdmobBannerSize.FULL_BANNER)
         ],
       )),
     );
@@ -201,10 +206,7 @@ class _SearchScreenState extends State<SearchScreen> {
         if (wallpaper.length <= 15) {
           wallpaper.addAll(snapshot.data.photos);
         }
-        // Ads
-        AdmobBanner(
-            adUnitId: ams.getBannerSearch(),
-            adSize: AdmobBannerSize.FULL_BANNER);
+
         return Expanded(
           child: StaggeredGridView.countBuilder(
             physics: const AlwaysScrollableScrollPhysics(),

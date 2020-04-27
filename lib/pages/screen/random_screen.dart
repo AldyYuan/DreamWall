@@ -25,7 +25,7 @@ class _RandomScreenState extends State<RandomScreen> {
   Future<Pages> loadMore() async {
     if (isLoading == false) {
       setState(() {
-        isLoading = true;        
+        isLoading = true;
       });
     }
 
@@ -74,11 +74,16 @@ class _RandomScreenState extends State<RandomScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Ads
+          AdmobBanner(
+              adUnitId: ams.getBannerRandom(),
+              adSize: AdmobBannerSize.FULL_BANNER),
+          Divider(thickness: 1),
           Text("Randoms",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           FutureBuilder<Pages>(
-            future:
-                Provider.of<PexelsProvider>(context, listen: false).getOther(random.nextInt(1000)),
+            future: Provider.of<PexelsProvider>(context, listen: false)
+                .getOther(random.nextInt(1000)),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return Center(
@@ -89,10 +94,6 @@ class _RandomScreenState extends State<RandomScreen> {
               if (wallpaper.length <= 15) {
                 wallpaper.addAll(snapshot.data.photos);
               }
-              // Ads
-              AdmobBanner(
-                adUnitId: ams.getBannerRandom(), adSize: AdmobBannerSize.FULL_BANNER
-              );
               return Expanded(
                 child: ListView.builder(
                   physics: const AlwaysScrollableScrollPhysics(),

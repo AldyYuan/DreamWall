@@ -78,6 +78,11 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          // Ads
+          AdmobBanner(
+              adUnitId: ams.getBannerHome(),
+              adSize: AdmobBannerSize.FULL_BANNER),
+          Divider(thickness: 1),
           FutureBuilder<Pages>(
             future:
                 Provider.of<PexelsProvider>(context, listen: false).getPhotos(),
@@ -91,10 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
               if (wallpaper.length <= 15) {
                 wallpaper.addAll(snapshot.data.photos);
               }
-              // Ads 
-              AdmobBanner(
-                adUnitId: ams.getBannerHome(), adSize: AdmobBannerSize.FULL_BANNER
-              );
+
               return Expanded(
                 child: StaggeredGridView.countBuilder(
                   physics: const AlwaysScrollableScrollPhysics(),
