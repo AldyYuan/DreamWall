@@ -1,11 +1,7 @@
-import 'package:dream_wall/models/pages.dart';
 import 'package:dream_wall/models/photos.dart';
-import 'package:dream_wall/providers/pexels_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:image_downloader/image_downloader.dart';
-import 'package:provider/provider.dart';
 import 'dart:math';
 
 import 'package:url_launcher/url_launcher.dart';
