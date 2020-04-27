@@ -30,7 +30,7 @@ class _RandomScreenState extends State<RandomScreen> {
     }
 
     var other = random.nextInt(1000);
-    final response = await api.get("curated?per_page=15&page=$other");
+    final response = await api.get("curated?per_page=30&page=$other");
     if (response.statusCode == 200) {
       var tempList = Pages.fromJson(response.data);
       setState(() {

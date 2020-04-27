@@ -37,7 +37,7 @@ class _SearchScreenState extends State<SearchScreen> {
     }
 
     final response =
-        await api.get("search?query=$query&per_page=15&page=$_currentPage");
+        await api.get("search?query=$query&per_page=50&page=$_currentPage");
     if (response.statusCode == 200) {
       var tempList = Pages.fromJson(response.data);
       setState(() {
