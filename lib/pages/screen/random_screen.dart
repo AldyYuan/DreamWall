@@ -7,6 +7,8 @@ import 'package:dream_wall/pages/detail_page.dart';
 import 'package:dream_wall/providers/pexels_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:dream_wall/services/admob_service.dart';
 
 class RandomScreen extends StatefulWidget {
   @override
@@ -18,6 +20,7 @@ class _RandomScreenState extends State<RandomScreen> {
   bool isLoading = false;
   final _scrollController = ScrollController();
   var random = Random();
+  final ams = AdMobService();
 
   Future<Pages> loadMore() async {
     if (isLoading == false) {
@@ -49,6 +52,7 @@ class _RandomScreenState extends State<RandomScreen> {
         loadMore();
       }
     });
+    Admob.initialize(ams.getAdMobAppId());
   }
 
   Widget buildProgressIndicator() {
@@ -85,7 +89,10 @@ class _RandomScreenState extends State<RandomScreen> {
               if (wallpaper.length <= 15) {
                 wallpaper.addAll(snapshot.data.photos);
               }
-
+              // Ads
+              AdmobBanner(
+                adUnitId: ams.getBannerRandom(), adSize: AdmobBannerSize.FULL_BANNER
+              );
               return Expanded(
                 child: ListView.builder(
                   physics: const AlwaysScrollableScrollPhysics(),

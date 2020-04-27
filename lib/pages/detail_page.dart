@@ -9,6 +9,8 @@ import 'package:provider/provider.dart';
 import 'dart:math';
 
 import 'package:url_launcher/url_launcher.dart';
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:dream_wall/services/admob_service.dart';
 
 class DetailPage extends StatefulWidget {
   final Photos photo;
@@ -36,6 +38,7 @@ class _DetailPageState extends State<DetailPage> {
   String url;
 
   var random = Random();
+  final ams = AdMobService();
 
   _launchUrl(String url) async {
     if (await canLaunch(url)) {
@@ -43,6 +46,12 @@ class _DetailPageState extends State<DetailPage> {
     } else {
       throw 'Could not launch $url';
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Admob.initialize(ams.getAdMobAppId());
   }
 
   @override
@@ -77,7 +86,10 @@ class _DetailPageState extends State<DetailPage> {
                         child: CircularProgressIndicator(),
                       );
                     }
-
+                    // Ads
+                    AdmobBanner(
+                        adUnitId: ams.getBannerDetail(),
+                        adSize: AdmobBannerSize.FULL_BANNER);
                     wallpaper.addAll(snapshot.data.photos);
                     return Expanded(
                       child: StaggeredGridView.countBuilder(
@@ -200,8 +212,7 @@ class _DetailPageState extends State<DetailPage> {
                       var fileName = await ImageDownloader.findName(imageId);
                       scaffoldKey.currentState.showSnackBar(
                         SnackBar(
-                          content:
-                              Text("Download $fileName Success"),
+                          content: Text("Download $fileName Success"),
                         ),
                       );
                     } on PlatformException catch (error) {

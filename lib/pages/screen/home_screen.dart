@@ -6,6 +6,8 @@ import 'package:dream_wall/providers/pexels_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:dream_wall/services/admob_service.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -17,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isLoading = false;
   int _currentPage = 1;
   final _scrollController = ScrollController();
+  final ams = AdMobService();
 
   Future<Pages> loadMore() async {
     if (isLoading == false) {
@@ -48,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
         loadMore();
       }
     });
+    Admob.initialize(ams.getAdMobAppId());
   }
 
   @override
@@ -87,7 +91,10 @@ class _HomeScreenState extends State<HomeScreen> {
               if (wallpaper.length <= 15) {
                 wallpaper.addAll(snapshot.data.photos);
               }
-
+              // Ads 
+              AdmobBanner(
+                adUnitId: ams.getBannerHome(), adSize: AdmobBannerSize.FULL_BANNER
+              );
               return Expanded(
                 child: StaggeredGridView.countBuilder(
                   physics: const AlwaysScrollableScrollPhysics(),

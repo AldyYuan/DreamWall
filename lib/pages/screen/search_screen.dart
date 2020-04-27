@@ -8,6 +8,8 @@ import 'package:dream_wall/providers/pexels_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:dream_wall/services/admob_service.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -24,6 +26,7 @@ class _SearchScreenState extends State<SearchScreen> {
   String query;
   bool isLoading = false;
   int _currentPage = 1;
+  final ams = AdMobService();
 
   Future<Pages> loadMore() async {
     if (isLoading == false) {
@@ -56,6 +59,7 @@ class _SearchScreenState extends State<SearchScreen> {
         loadMore();
       }
     });
+    Admob.initialize(ams.getAdMobAppId());
   }
 
   @override
@@ -197,7 +201,10 @@ class _SearchScreenState extends State<SearchScreen> {
         if (wallpaper.length <= 15) {
           wallpaper.addAll(snapshot.data.photos);
         }
-
+        // Ads
+        AdmobBanner(
+            adUnitId: ams.getBannerSearch(),
+            adSize: AdmobBannerSize.FULL_BANNER);
         return Expanded(
           child: StaggeredGridView.countBuilder(
             physics: const AlwaysScrollableScrollPhysics(),
