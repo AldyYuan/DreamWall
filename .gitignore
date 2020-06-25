@@ -30,12 +30,20 @@
 .pub-cache/
 .pub/
 /build/
+/lib/api/
 
 # Web related
 lib/generated_plugin_registrant.dart
 
 # Symbolication related
 app.*.symbols
+*.json
+*.http
+*.lock
+*.yaml
+*.g.dart
+*.json
+*.info.json
 
 # Obfuscation related
 app.*.map.json
