@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "17261643769",
-    "firebase_url": "https://dream-wall-76cc6.firebaseio.com",
-    "project_id": "dream-wall-76cc6",
-    "storage_bucket": "dream-wall-76cc6.appspot.com"
+    "project_number": "488600997159",
+    "firebase_url": "https://dream-wall-8ad72.firebaseio.com",
+    "project_id": "dream-wall-8ad72",
+    "storage_bucket": "dream-wall-8ad72.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:17261643769:android:cbc48e42633842b9acdf28",
+        "mobilesdk_app_id": "1:488600997159:android:23cc8f03c04ad9a73bad02",
         "android_client_info": {
-          "package_name": "com.example.dream_wall"
+          "package_name": "com.dream.dream_wall"
         }
       },
       "oauth_client": [
         {
-          "client_id": "17261643769-udrcbigudm29upkeakgk7uodng797je4.apps.googleusercontent.com",
+          "client_id": "488600997159-p5ivdvcsphncc0l2rms6pvm86jk8hlct.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB9Z9aZCCaLS0VnuP-y1bdxOyvAdIW17YU"
+          "current_key": "AIzaSyDoGl_6qU6xF5lN9kBo18o3kRENiVKXEKc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "17261643769-udrcbigudm29upkeakgk7uodng797je4.apps.googleusercontent.com",
+              "client_id": "488600997159-p5ivdvcsphncc0l2rms6pvm86jk8hlct.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
